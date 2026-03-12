@@ -1,0 +1,7 @@
+bind mmu mmu_prop
+	#(
+		.INSTR_TLB_ENTRIES (INSTR_TLB_ENTRIES),
+		.DATA_TLB_ENTRIES (DATA_TLB_ENTRIES),
+		.ASID_WIDTH (ASID_WIDTH),
+		.ASSERT_INPUTS (0)
+	) u_mmu_sva(.*);
