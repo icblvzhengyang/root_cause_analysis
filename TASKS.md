@@ -14,7 +14,29 @@ as__dtlb_lookup_transid_was_a_request: assert property (dtlb_lookup_transid_resp
 
 ```
 
-And the waveform of the counter example has been transformed into the .csv format under `wave.csv`.
+And the waveform of the counter example is `cases/cva6_mmu/fml/mmu_cex.fsdb`, and it has been transformed into the .csv format under `wave.csv`.
+The transformation is done by the script `wave2csv.csh`, which depends on the command `fsdbreport`. 
+The help message of `fsdbreport` is at `fsdbreport.help.md`.
+
+Note that:
+* CANNOT RUN the command `fsdbreport` or the script `wave2csv.csh` here
+* Analyze the waveform by the dumpped `wave.csv` ONLY.
+
+### About the `wave.csv`
+
+The values of the signals are sampled at the rising edge of the clk signal.
+
+e.g.
+```csv
+clk,sig_1,sig_2
+0,1,1
+10,1,1
+20,0,0
+```
+
+The csv above records 2 cycles: the clk rising edge is at time 10 and time 20 (the clk period is 10), and right after the rising edge, `sig_1` and `sig_2` are sampled with the value (1,1), (1,1), and (0,0)
+
+You should find the Assertion Triggerred Value, and back-tracing it according to the RTL code, in order to find the real root cause.
 
 ## How to do?
 
